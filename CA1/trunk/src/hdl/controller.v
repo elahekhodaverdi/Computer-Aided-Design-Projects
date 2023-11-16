@@ -28,13 +28,8 @@ module controller(start, rst, clk, isfinished, init_w, init_x, load_a, load_sel,
     always @(ps) begin
         {init_w, init_x, load_a, load_sel, done} = 5'b0;
         case(ps)
-            `IDLE:begin end
-            `INIT:begin
-                {init_w, init_x, load_a, load_sel} = 4'b0; end
-            `MULT: begin end
-            `ADD: begin end
+            `INIT:begin{init_w, init_x, load_a, load_sel} = 4'b0; end
             `WB_ACT: begin load_a = 1'b1; end
-            `CHECK: begin end
             `DONE : begin  done = 1'b1; end
         endcase
     end
