@@ -3,10 +3,7 @@
 module encoder_4to2 (
     input [3:0] in,
     output [1:0] out,
-    output enable
 );
-
-assign enable = |in;
 
 always @ (in) begin
     case (in)
