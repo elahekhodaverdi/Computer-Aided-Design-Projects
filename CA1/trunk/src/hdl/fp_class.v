@@ -9,7 +9,7 @@ module fp_class(f, fExp, fSig, fFlags);
     reg signed [NEXP+1:0] fExp;
     output [NSIG:0] fSig;
     reg [NSIG:0] fSig;
-    `include "ieee-754-flags.v"
+    `include "ieee-754-flags.vh"
     output [LAST_FLAG-1:0] fFlags;
 
     wire expOnes, expZeroes, sigZeroes;

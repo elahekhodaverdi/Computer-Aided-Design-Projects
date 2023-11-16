@@ -5,7 +5,7 @@ module fp_mul(a, b, p, pFlags);
   parameter NSIG = 10;
   input [NEXP+NSIG:0] a, b;
   output [NEXP+NSIG:0] p;
-  `include "ieee-754-flags.v"
+  `include "ieee-754-flags.vh"
   output [LAST_FLAG-1:0] pFlags;
   reg [LAST_FLAG-1:0] pFlags;
 
