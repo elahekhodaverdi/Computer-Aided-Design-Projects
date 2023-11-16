@@ -1,6 +1,6 @@
 `timescale 1ps/1ps
 
-module mux2to1 #(parameter N = 32)(a, b ,c, d, sel, w);
+module mux4to1 #(parameter N = 32)(a, b ,c, d, sel, w);
     input[1:0] sel;
     input[N-1:0] a,b,c,d;
     output [N-1:0] w;

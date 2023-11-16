@@ -7,20 +7,29 @@ module dp (clk,init_x,init_x,load_a, load_sel, is_finished,res );
     wire [31:0] a1, a2, a3, a4;
     wire [31:0] x1, x2, x3, x4;
     wire[1:0] sel_res;
+
+    wire [0:WIDTH - 1] W_out [0:HEIGHT - 1];;
+
+    wire [0:WIDTH - 1] X_out [0:3];
+    Memory memory(X_out,W_out);
     encoder_4to2 encoder(.in({{|a1},{|a2},{|a3},{|a4}}), .out(sel_res));
     check  chck(.zero0({|a1}), .zero1({|a2}), .zero2({|a3}), .zero3({|a4}), .is_finished(is_finished));
     
-    mux2to1 mxa1(.a(PU1), .b() , .sel(load_sel), .w(ai1));
-    mux2to1 mxa2(.a(PU2), .b() , .sel(load_sel), .w(ai2));
-    mux2to1 mxa3(.a(PU3), .b() , .sel(load_sel), .w(ai3));
-    mux2to1 mxa4(.a(PU4), .b() , .sel(load_sel), .w(ai4));
-
-    PU PU_1(.clk(clk), .a1(a1), .a2(a2), .a3(a3), .a4(a4), .w(), .out(PU1));
-    PU PU_2(.clk(clk), .a1(a1), .a2(a2), .a3(a3), .a4(a4), .w(), .out(PU2));
-    PU PU_3(.clk(clk), .a1(a1), .a2(a2), .a3(a3), .a4(a4), .w(), .out(PU3));
-    PU PU_4(.clk(clk), .a1(a1), .a2(a2), .a3(a3), .a4(a4), .w(), .out(PU4));
-
-    mux2to1 mux_res(.a(), .b() ,.c(), .d(), .sel(sel_res), .w(res));
+    register rega1(.clk(clk), .ld(load_a), .in(ai1) , .out(a1));
+    register rega2(.clk(clk), .ld(load_a), .in(ai2) , .out(a2));
+    register rega3(.clk(clk), .ld(load_a), .in(ai3) , .out(a3));
+    register rega4(.clk(clk), .ld(load), .in(ai4) , .out(a4));
     
-    
+    mux2to1 mxa1(.a(PU1), .b(X_out[0]) , .sel(load_sel), .w(ai1));
+    mux2to1 mxa2(.a(PU2), .b(X_out[1]) , .sel(load_sel), .w(ai2));
+    mux2to1 mxa3(.a(PU3), .b(X_out[2]) , .sel(load_sel), .w(ai3));
+    mux2to1 mxa4(.a(PU4), .b(X_out[3]) , .sel(load_sel), .w(ai4));
+
+    PU PU_1(.clk(clk), .a1(a1), .a2(a2), .a3(a3), .a4(a4), .w({W_out[0],W_out[1],W_out[2],W_out[3]}), .out(PU1));
+    PU PU_2(.clk(clk), .a1(a1), .a2(a2), .a3(a3), .a4(a4), .w({W_out[4],W_out[5],W_out[6],W_out[7]}), .out(PU2));
+    PU PU_3(.clk(clk), .a1(a1), .a2(a2), .a3(a3), .a4(a4), .w({W_out[8],W_out[9],W_out[10],W_out[11]}), .out(PU3));
+    PU PU_4(.clk(clk), .a1(a1), .a2(a2), .a3(a3), .a4(a4), .w({W_out[12],W_out[13],W_out[14],W_out[15]}), .out(PU4));
+
+    mux4to1 mux_res(.a(X_out[0]), .b(X_out[1]) ,.c(X_out[2]), .d(X_out[3]), .sel(sel_res), .w(res));
+
 endmodule
