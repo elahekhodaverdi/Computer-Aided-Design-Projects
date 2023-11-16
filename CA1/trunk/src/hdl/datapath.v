@@ -1,4 +1,4 @@
-module dp (clk,init_x,init_x,load_a, load_sel, is_finished,res );
+module dp (clk,init_x,init_w,load_a, load_sel, is_finished,res );
     input clk, init_x, init_w, load_a, load_sel;
     output is_finished;
     output [31:0] res;
@@ -8,9 +8,9 @@ module dp (clk,init_x,init_x,load_a, load_sel, is_finished,res );
     wire [31:0] x1, x2, x3, x4;
     wire[1:0] sel_res;
 
-    wire [0:WIDTH - 1] W_out [0:HEIGHT - 1];;
+    wire [0:32 - 1] W_out [0:16 - 1];
 
-    wire [0:WIDTH - 1] X_out [0:3];
+    wire [0:32 - 1] X_out [0:3];
     Memory memory(X_out,W_out);
     encoder_4to2 encoder(.in({{|a1},{|a2},{|a3},{|a4}}), .out(sel_res));
     check  chck(.zero0({|a1}), .zero1({|a2}), .zero2({|a3}), .zero3({|a4}), .is_finished(is_finished));
