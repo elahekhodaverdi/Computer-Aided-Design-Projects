@@ -1,8 +1,15 @@
-**/work
-**/*.mpf
-**/*.wlf
-**/*.mti
-**/transcript
-**/wlf*
-**/*.zip
-**/*.vstf
+.vsocde
+*.zip
+*.tmp
+*.dtmp
+~*
+*.bkp
+
+# Modelsim files
+*.wlf
+*.mti
+*.mpf
+transcript
+work
+*.dbg
+*.ini
