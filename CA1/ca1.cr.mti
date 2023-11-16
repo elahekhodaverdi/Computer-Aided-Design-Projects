@@ -1,0 +1,83 @@
+C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/controller.v {0 {vlog -work work -stats=none C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/controller.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+** Error: C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/controller.v(9): Error in the specified time literal value of -1.  Expected value of 1, 10, or 100.
+** Error: (vlog-13069) C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/controller.v(9): near "(": syntax error, unexpected '('.
+** Error: C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/controller.v(9): (vlog-13205) Syntax error found in the scope following 'controller'. Is there a missing '::'?
+
+} {3.0 6.0} {}} C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/fp_adder.v {1 {vlog -work work -stats=none C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/fp_adder.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module priority_encoder
+-- Compiling module Addition_Subtraction
+-- Compiling module Addition_Subtraction_tb
+
+Top level modules:
+	Addition_Subtraction_tb
+
+} {} {}} C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/datapath.v {1 {vlog -work work -stats=none C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/datapath.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module dp
+
+Top level modules:
+	dp
+
+} {} {}} C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/encoder4to2.v {0 {vlog -work work -stats=none C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/encoder4to2.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module encoder_4to2
+** Error: (vlog-13038) C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/encoder4to2.v(6): near ")": Missing port in ansi port list.
+
+} {4.0 5.0} {}} C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/mux2-1.v {0 {vlog -work work -stats=none {C:\Users\ALI\OneDrive\Desktop\university\Project\CAD\Computer-Aided-Design-Projects\CA1\trunk\src\hdl\mux2-1.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module mux2to1
+** Error: (vlog-13069) C:\Users\ALI\OneDrive\Desktop\university\Project\CAD\Computer-Aided-Design-Projects\CA1\trunk\src\hdl\mux2-1.v(8): near "'b": syntax error, unexpected BASE, expecting ';' or ','.
+
+} {4.0 5.0} {}} C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/fp_class.v {1 {vlog -work work -stats=none C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/fp_class.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module fp_class
+
+Top level modules:
+	fp_class
+
+} {} {}} C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/fp_multiplier.v {1 {vlog -work work -stats=none C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/fp_multiplier.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module fp_mul
+
+Top level modules:
+	fp_mul
+
+} {} {}} C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/mux4-1.v {0 {vlog -work work -stats=none C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/mux4-1.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module mux2to1
+** Error (suppressible): C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/mux4-1.v(7): (vlog-13299) Undefined variable: 'c'.
+** Error (suppressible): C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/mux4-1.v(7): (vlog-13299) Undefined variable: 'd'.
+** Error: (vlog-13069) C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/mux4-1.v(7): near "'b": syntax error, unexpected BASE, expecting ';' or ','.
+** Error: C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/mux4-1.v(3): (vlog-2730) Undefined variable: 'c'.
+** Error: C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/mux4-1.v(3): (vlog-13294) Identifier must be declared with a port mode: c.
+** Error: C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/mux4-1.v(3): (vlog-2730) Undefined variable: 'd'.
+** Error: C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/mux4-1.v(3): (vlog-13294) Identifier must be declared with a port mode: d.
+
+} {6.0 11.0} {}} C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/register.v {0 {vlog -work work -stats=none C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/register.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+** Error: C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/register.v(3): Error in the specified time literal value of -1.  Expected value of 1, 10, or 100.
+** Error: (vlog-13069) C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/register.v(3): near "(": syntax error, unexpected '('.
+** Error: C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/register.v(3): (vlog-13205) Syntax error found in the scope following 'register'. Is there a missing '::'?
+
+} {3.0 6.0} {}} C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/check.v {1 {vlog -work work -stats=none C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/check.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module check
+
+Top level modules:
+	check
+
+} {} {}} C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/ieee-754-flags.v {0 {vlog -work work -stats=none C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/ieee-754-flags.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+** Error: C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/ieee-754-flags.v(1): (vlog-2155) Global declarations are illegal in Verilog 2001 syntax.
+** Error: C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/ieee-754-flags.v(9): (vlog-2730) Undefined variable: 'NEXP'.
+
+} {3.0 5.0} {}} C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/activation.v {1 {vlog -work work -stats=none C:/Users/ALI/OneDrive/Desktop/university/Project/CAD/Computer-Aided-Design-Projects/CA1/trunk/src/hdl/activation.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module activation
+
+Top level modules:
+	activation
+
+} {} {}}

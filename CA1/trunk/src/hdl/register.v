@@ -1,8 +1,9 @@
-`timescale 1ps/
+`timescale 1ps/1ps
 
-module register(parameter N = 32)(clk, ld, in , out);
+module register #(parameter N = 32)(clk, ld, in , out);
+    input clk, ld;
     input[N-1:0] in;
-    output[N-1:0] out;
+    output reg[N-1:0] out;
 
     always @(posedge clk)begin 
         if(ld) 

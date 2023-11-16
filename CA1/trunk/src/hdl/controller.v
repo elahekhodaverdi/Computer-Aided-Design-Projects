@@ -1,24 +1,28 @@
-`timescale 1ps/
+`timescale 1ps/1ps
+
 `define IDLE   3'b000
 `define INIT   3'b001
 `define MULT   3'b010
 `define ADD    3'b011
 `define WB_ACT 3'b100
 `define CHECK  3'b101
-`define DONE   3'110
+`define DONE   3'b110
+
 module controller(start, rst, clk, isfinished, init_w, init_x, load_a, load_sel, done);
     input start,clk,rst,isfinished;
-    output init_w, init_x, load_a, load_sel, done;
+    output reg init_w, init_x, load_a, load_sel, done;
     reg[2:0] ns,ps;
 
     always @(start, isfinished) begin 
-            `IDLE:   ns <= ~start ? IDLE : `INIT;
-            `INIT:   ns <= start ? `INIt ? MULT;
-            `MULT:   ns <= `ADD;
-            `ADD:    ns <= `WB_ACT;
-            `WB_ACT: ns <= `CHECK;
-            `CHEKC:  ns <= isfinished ? `DONE : MULT;
-            `DONE :  ns <= `IDLE; 
+        case(ps)
+            `IDLE:   ns = ~start ? `IDLE : `INIT;
+            `INIT:   ns = start ? `INIT : `MULT;
+            `MULT:   ns = `ADD;
+            `ADD:    ns = `WB_ACT;
+            `WB_ACT: ns = `CHECK;
+            `CHECK:  ns = isfinished ? `DONE : `MULT;
+            `DONE :  ns = `IDLE; 
+        endcase
     end
 
     always @(ps) begin
@@ -30,7 +34,7 @@ module controller(start, rst, clk, isfinished, init_w, init_x, load_a, load_sel,
             `MULT: begin end
             `ADD: begin end
             `WB_ACT: begin load_a = 1'b1; end
-            `CHEKC: begin end
+            `CHECK: begin end
             `DONE : begin  done = 1'b1; end
         endcase
     end

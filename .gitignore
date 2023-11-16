@@ -1,0 +1,8 @@
+**/work
+**/*.mpf
+**/*.wlf
+**/*.mti
+**/transcript
+**/wlf*
+**/*.zip
+**/*.vstf
