@@ -18,7 +18,7 @@ module dp (clk,init_x,init_w,load_a, load_sel, is_finished,res );
     register rega1(.clk(clk), .ld(load_a), .in(ai1) , .out(a1));
     register rega2(.clk(clk), .ld(load_a), .in(ai2) , .out(a2));
     register rega3(.clk(clk), .ld(load_a), .in(ai3) , .out(a3));
-    register rega4(.clk(clk), .ld(load), .in(ai4) , .out(a4));
+    register rega4(.clk(clk), .ld(load_a), .in(ai4) , .out(a4));
     
     mux2to1 mxa1(.a(PU1), .b(X_out[0]) , .sel(load_sel), .w(ai1));
     mux2to1 mxa2(.a(PU2), .b(X_out[1]) , .sel(load_sel), .w(ai2));
