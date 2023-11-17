@@ -13,7 +13,7 @@ module fp_adder #(parameter N=32) (a, b, result);
     reg carry, comp;
     always @(*) begin
         comp =  (a[30:23] > b[30:23])? 1'b1 : 
-                (a[22:0] > b[22:0]) ? 1'b1 : 1'b0;
+                (a[30:23] == b[32:23] && a[22:0] > b[22:0]) ? 1'b1 : 1'b0;
         
         a_mantis  = comp ? {1'b1,a[22:0]} : {1'b1,b[22:0]};
         a_exp = comp ? a[30:23] : b[30:23];
