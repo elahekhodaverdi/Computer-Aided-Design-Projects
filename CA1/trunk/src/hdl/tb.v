@@ -3,9 +3,9 @@
 
 module tb();
     reg clk,rst,start;
-    wire init_w,init_x,load_a,load_sel, isfinished;
+    wire init_w,init_x,load_a,load_sel, is_finished;
     wire[31:0] res;
-    controller cntrlr(start, rst, clk, isfinished, init_w, init_x, load_a, load_sel, done);
+    controller cntrlr(start, rst, clk, is_finished, init_w, init_x, load_a, load_sel, done);
     dp datapath(clk,init_x,init_w,load_a, load_sel, is_finished,res );
 
     always #5 clk = ~clk;

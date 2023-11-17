@@ -8,20 +8,20 @@
 `define CHECK  3'b101
 `define DONE   3'b110
 
-module controller(start, rst, clk, isfinished, init_w, init_x, load_a, load_sel, done);
-    input start,clk,rst,isfinished;
+module controller(start, rst, clk, is_finished, init_w, init_x, load_a, load_sel, done);
+    input start,clk,rst,is_finished;
     output reg init_w, init_x, load_a, load_sel, done;
     reg[2:0] ns =`IDLE;
     reg[2:0] ps =`IDLE;
 
-    always @(start, isfinished) begin 
+    always @(start, is_finished, ps) begin 
         case(ps)
             `IDLE:   ns <= ~start ? `IDLE : `INIT;
             `INIT:   ns <= start ? `INIT : `MULT;
             `MULT:   ns <= `ADD;
             `ADD:    ns <= `WB_ACT;
             `WB_ACT: ns <= `CHECK;
-            `CHECK:  ns <= isfinished ? `DONE : `MULT;
+            `CHECK:  ns <= is_finished ? `DONE : `MULT;
             `DONE :  ns <= `IDLE; 
         endcase
     end
