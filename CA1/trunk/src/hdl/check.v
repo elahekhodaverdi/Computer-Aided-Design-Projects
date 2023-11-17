@@ -1,3 +1,4 @@
+// check if three of the four inputs are 0.
 module check  (a, is_finished);
     input [3:0] a;
     output is_finished;

@@ -21,11 +21,14 @@ module fp_mult #(parameter N=32) (a, b, result);
         b_exp  = b[30:23];
         b_sign  = b[31];
 
-        temp_exp = a_exp+b_exp- 127;
+        //exponent = sum of exponents - 127
+        //mantissa = product of mantissas
+        temp_exp = a_exp+b_exp - 127;
         temp_mantis = a_mantis*b_mantis;
         res_mantis = temp_mantis[47] ? temp_mantis[46:24] : temp_mantis[45:23];
         res_exp = temp_mantis[47] ? temp_exp+1'b1 : temp_exp;
         res_sign = a_sign^b_sign; 
+        //if inputs are 0 output should be 0 too.(in normal case it doesn't give exactly 0.)
         result = (a == 32'b0 || b == 32'b0) ? 0 : {res_sign,res_exp,res_mantis};
     end
 endmodule
