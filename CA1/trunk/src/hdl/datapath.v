@@ -8,9 +8,9 @@ module dp (clk,init_x,init_w,load_a, load_sel, is_finished,res );
     wire [31:0] x1, x2, x3, x4;
     wire[1:0] sel_res;
 
-    wire [0:32 - 1] W_out [0:16 - 1];
-
-    wire [0:32 - 1] X_out [0:3];
+    wire [31:0] W_out [15:0];
+    wire [31:0] X_out [3:0];
+    
     Memory memory(X_out,W_out);
     encoder_4to2 encoder(.in({{|a1},{|a2},{|a3},{|a4}}), .out(sel_res));
     check  chck(.zero0({|a1}), .zero1({|a2}), .zero2({|a3}), .zero3({|a4}), .is_finished(is_finished));
@@ -25,10 +25,10 @@ module dp (clk,init_x,init_w,load_a, load_sel, is_finished,res );
     mux2to1 mxa3(.a(PU3), .b(X_out[2]) , .sel(load_sel), .w(ai3));
     mux2to1 mxa4(.a(PU4), .b(X_out[3]) , .sel(load_sel), .w(ai4));
 
-    PU PU_1(.clk(clk), .a1(a1), .a2(a2), .a3(a3), .a4(a4), .w({W_out[0],W_out[1],W_out[2],W_out[3]}), .out(PU1));
-    PU PU_2(.clk(clk), .a1(a1), .a2(a2), .a3(a3), .a4(a4), .w({W_out[4],W_out[5],W_out[6],W_out[7]}), .out(PU2));
-    PU PU_3(.clk(clk), .a1(a1), .a2(a2), .a3(a3), .a4(a4), .w({W_out[8],W_out[9],W_out[10],W_out[11]}), .out(PU3));
-    PU PU_4(.clk(clk), .a1(a1), .a2(a2), .a3(a3), .a4(a4), .w({W_out[12],W_out[13],W_out[14],W_out[15]}), .out(PU4));
+    PU PU_1(.clk(clk), .a1(a1), .a2(a2), .a3(a3), .a4(a4), .w1(W_out[0]), .w2(W_out[1]), .w3(W_out[2]), .w4(W_out[3]), .out(PU1));
+    PU PU_2(.clk(clk), .a1(a1), .a2(a2), .a3(a3), .a4(a4), .w1(W_out[4]), .w2(W_out[5]), .w3(W_out[6]), .w4(W_out[7]), .out(PU2));
+    PU PU_3(.clk(clk), .a1(a1), .a2(a2), .a3(a3), .a4(a4), .w1(W_out[8]), .w2(W_out[9]), .w3(W_out[10]), .w4(W_out[11]), .out(PU3));
+    PU PU_4(.clk(clk), .a1(a1), .a2(a2), .a3(a3), .a4(a4), .w1(W_out[12]), .w2(W_out[13]), .w3(W_out[14]), .w4(W_out[15]), .out(PU4));
 
     mux4to1 mux_res(.a(X_out[0]), .b(X_out[1]) ,.c(X_out[2]), .d(X_out[3]), .sel(sel_res), .w(res));
 
