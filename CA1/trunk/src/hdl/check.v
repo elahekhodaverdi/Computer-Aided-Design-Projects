@@ -1,5 +1,5 @@
-module check  (zero0, zero1, zero2, zero3, is_finished);
-    input zero0, zero1, zero2, zero3;
+module check  (a, is_finished);
+    input [3:0]a ;
     output is_finished;
-    assign is_finished = ((zero0 & zero1) & (zero2 ^ zero3)) | ((zero0 ^ zero1) & (zero2 & zero3));    
+    assign is_finished = (a == 4'b0001 || a == 4'b0010 || a == 4'b0100 || a == 4'b1000);    
 endmodule

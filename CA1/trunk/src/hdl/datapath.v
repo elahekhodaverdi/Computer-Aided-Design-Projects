@@ -10,10 +10,10 @@ module dp (clk,init_x,init_w,load_a, load_sel, is_finished,res );
 
     wire [31:0] W_out [15:0];
     wire [31:0] X_out [3:0];
-    
+
     Memory memory(X_out,W_out);
     encoder_4to2 encoder(.in({{|a1},{|a2},{|a3},{|a4}}), .out(sel_res));
-    check  chck(.zero0({|a1}), .zero1({|a2}), .zero2({|a3}), .zero3({|a4}), .is_finished(is_finished));
+    check  chck(.a({|a1 ,|a2,|a3,|a4}), .is_finished(is_finished));
     
     register rega1(.clk(clk), .ld(load_a), .in(ai1) , .out(a1));
     register rega2(.clk(clk), .ld(load_a), .in(ai2) , .out(a2));
