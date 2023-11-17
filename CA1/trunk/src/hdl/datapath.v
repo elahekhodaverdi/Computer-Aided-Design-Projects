@@ -1,5 +1,5 @@
-module datapath(clk, init_x, init_w, load_a, load_sel, is_finished, res );
-    input clk, init_x, init_w, load_a, load_sel;
+module datapath(clk, load_a, load_sel, is_finished, res );
+    input clk, load_a, load_sel;
     output is_finished;
     output [31:0] res;
     wire[31:0] PU1, PU2, PU3, PU4;
