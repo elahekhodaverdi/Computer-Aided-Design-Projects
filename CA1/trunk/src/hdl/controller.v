@@ -21,7 +21,7 @@ module controller(start, rst, clk, is_finished, init_w, init_x, load_a, load_sel
             `MULT:   ns <= `ADD;
             `ADD:    ns <= `WB_ACT;
             `WB_ACT: ns <= `CHECK;
-            `CHECK:  ns <= is_finished ? `DONE : `MULT;
+            `CHECK:  ns <= is_finished ? `DONE : `ADD;
             `DONE :  ns <= `IDLE; 
         endcase
     end
