@@ -26,6 +26,6 @@ module fp_mult #(parameter N=32) (a, b, result);
         res_mantis = temp_mantis[47] ? temp_mantis[46:24] : temp_mantis[45:23];
         res_exp = temp_mantis[47] ? temp_exp+1'b1 : temp_exp;
         res_sign = a_sign^b_sign; 
-        result = {res_sign,res_exp,res_mantis};
+        result = (a == 32'b0 || b == 32'b0) ? 0 : {res_sign,res_exp,res_mantis};
     end
 endmodule
