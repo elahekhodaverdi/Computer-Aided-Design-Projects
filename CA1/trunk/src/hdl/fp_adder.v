@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ps / 1ps
 module FloatingAddition #(parameter XLEN=32)
                         (input [XLEN-1:0]A,
                          input [XLEN-1:0]B,
