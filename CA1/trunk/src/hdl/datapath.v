@@ -1,11 +1,10 @@
-module dp (clk,init_x,init_w,load_a, load_sel, is_finished,res );
+module datapath(clk, init_x, init_w, load_a, load_sel, is_finished, res );
     input clk, init_x, init_w, load_a, load_sel;
     output is_finished;
     output [31:0] res;
     wire[31:0] PU1, PU2, PU3, PU4;
     wire[31:0] ai1, ai2, ai3, ai4;
     wire [31:0] a1, a2, a3, a4;
-    wire [31:0] x1, x2, x3, x4;
     wire[1:0] sel_res;
 
     wire [31:0] W_out [15:0];
