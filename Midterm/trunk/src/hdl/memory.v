@@ -13,7 +13,7 @@ module Memory(
     reg [WIDTH-1:0] memory [DEPTH-1:0];
 
     initial begin
-        $readmemh("input.mem", memory);
+        $readmemh("trunk/sim/file/test1234.dat", memory);
     end
 
     always @(posedge clk) begin
