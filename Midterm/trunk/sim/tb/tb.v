@@ -18,7 +18,7 @@ module tb();
             {start,rst,clk} = 3'b0;
             #30 start = 1'b1;
             #30 start = 1'b0;
-            #50000
+            #66000
             #200 rst = 1'b1;
             #200 rst = 1'b0;
             #10 $stop;
