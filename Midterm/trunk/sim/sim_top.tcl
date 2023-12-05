@@ -13,20 +13,21 @@
 
 #============================ Add verilog files  ===============================
 # Pleas add other module here	
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/activation.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/check.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/check.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/buffer4x1.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/buffer4x4_f.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/buffer4x4_w.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/buffer8x8.v
 	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/controller.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/convolution.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/cordinate.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/counter.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/counter2.v
 	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/datapath.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/encoder4to2.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/fp_adder.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/fp_multiplier.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/mac.v
 	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/memory.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/mux2-1.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/mux4-1.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/PU.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/multiplier.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/mux2to1.v
 	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/register.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/maxnet.v
 
 
 	vlog 	+acc -incr -source  +incdir+$inc_path +define+SIM 	./tb/$TB.v

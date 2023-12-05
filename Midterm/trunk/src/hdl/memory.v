@@ -7,13 +7,13 @@ module Memory(
     output reg [31:0] data_out
 );
 
-    parameter FILENAME_X = "trunk/sim/file/test1234.dat";
+    parameter FILENAME_X = "file/test3456.dat";
     localparam WIDTH = 32;
     localparam DEPTH = 128;
     reg [WIDTH-1:0] memory [DEPTH-1:0];
 
     initial begin
-        $readmemh("trunk/sim/file/test1234.dat", memory);
+        $readmemh(FILENAME_X, memory);
     end
 
     always @(posedge clk) begin
