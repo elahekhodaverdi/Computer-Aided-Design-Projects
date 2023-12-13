@@ -13,7 +13,7 @@ module datapath(clk, load_a, load_sel, is_finished, res );
     // read Weights and inputs from memory
     Memory memory(X_out,W_out);
     // encoder for maximum selector
-    encoder_4to2 encoder(.in({{|a1},{|a2},{|a3},{|a4}}), .out(sel_res));
+    encoder4to2 encoder(.in({{|a1},{|a2},{|a3},{|a4}}), .out(sel_res));
     // check if procedure is finished
     check  chck(.a({|a1 ,|a2,|a3,|a4}), .is_finished(is_finished));
     

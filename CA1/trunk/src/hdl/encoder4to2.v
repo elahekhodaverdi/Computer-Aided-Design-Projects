@@ -1,7 +1,7 @@
 `timescale 1ps/1ps
 
 
-module encoder_4to2 (in, out);
+module encoder4to2 (in, out);
 
     input [3:0] in;
     output reg [1:0] out;
