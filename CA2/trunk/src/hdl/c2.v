@@ -1,4 +1,4 @@
-module C2 (D0, D1, D2, D3, A1, B1, A0, B0);
+module C2 (D0, D1, D2, D3, A1, B1, A0, B0, F);
     parameter N = 1;
     input [N - 1 : 0] D0, D1, D2, D3;
     input A1, B1, A0, B0;
