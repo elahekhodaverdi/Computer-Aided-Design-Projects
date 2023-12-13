@@ -39,7 +39,7 @@ module fp_adder #(parameter N=32) (a, b, result);
             end
         else
             begin
-            while(!temp_mantis[23])
+            while(!temp_mantis[23] && res_exp != 0)
                 begin
                 temp_mantis = temp_mantis<<1;
                 res_exp =  res_exp-1'b1;
