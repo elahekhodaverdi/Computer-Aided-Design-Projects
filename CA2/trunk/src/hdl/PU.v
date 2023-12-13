@@ -1,7 +1,7 @@
 `timescale 1ps/1ps
 
-module PU (clk, a1, a2, a3, a4, w1, w2, w3, w4, out);
-    input clk;
+module PU (clk, rst, a1, a2, a3, a4, w1, w2, w3, w4, out);
+    input clk, rst;
     input [31:0] a1, a2, a3, a4;
     input [31:0] w1, w2, w3, w4;
     output [31:0] out;
@@ -16,10 +16,10 @@ module PU (clk, a1, a2, a3, a4, w1, w2, w3, w4, out);
     multiplier multiplier3(.x(a3), .y(w3), .z(reg_mul3_inp));
     multiplier multiplier4(.x(a4), .y(w4), .z(reg_mul4_inp));
     
-    register reg_mul1(clk, 1'b0, reg_mul1_inp, reg_mul1_out);
-    register reg_mul2(clk, 1'b0, reg_mul2_inp, reg_mul2_out);
-    register reg_mul3(clk, 1'b0, reg_mul3_inp, reg_mul3_out);
-    register reg_mul4(clk, 1'b0, reg_mul4_inp, reg_mul4_out);
+    register reg_mul1(clk, rst, 1'b0, reg_mul1_inp, reg_mul1_out);
+    register reg_mul2(clk, rst, 1'b0, reg_mul2_inp, reg_mul2_out);
+    register reg_mul3(clk, rst, 1'b0, reg_mul3_inp, reg_mul3_out);
+    register reg_mul4(clk, rst, 1'b0, reg_mul4_inp, reg_mul4_out);
 
     // second cycle
     adder #(32) addr1(.a(reg_mul1_out), .b(reg_mul2_out), .sum(addr1_res));
