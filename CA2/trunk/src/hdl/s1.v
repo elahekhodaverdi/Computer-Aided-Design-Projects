@@ -1,5 +1,5 @@
 module s1 #(parameter N = 1) (D0, D1, D2, D3, A1, B1, A0, clr, clk, out);
-    input [N-1:0] D0, D1, D2, D3, out;
+    input [N-1:0] D0, D1, D2, D3;
     input A1, B1, A0, clr, clk;
     output reg [N-1:0] out;
     wire S0,S1 ;
@@ -8,8 +8,7 @@ module s1 #(parameter N = 1) (D0, D1, D2, D3, A1, B1, A0, clr, clk, out);
     assign S2 = A0 && clr;
     assign RM = ({S1,S0} == 2'b00) ? D0 :
                  ({S1,S0} == 2'b01) ? D1 : 
-                 ({S1,S0} == 2'b10) ? D2 :
-                 ({S1,S0} == 2'b11) ? D3 ;
+                 ({S1,S0} == 2'b10) ? D2 : D3;
     always @(posedge clk) begin
         if(clr)
             out <= {N{'b0}};

@@ -1,7 +1,7 @@
 `timescale 1ps/1ps
 module multiplierTB();
     reg [31:0] a, b;
-    wire [63:0] product;
+    wire [62:0] product;
 
     multiplier #(32) U1 (.x(a), .y(b), .z(product));
 

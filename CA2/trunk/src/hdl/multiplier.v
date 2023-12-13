@@ -23,7 +23,7 @@ module multiplier (x, y, z);
                     .yo(yv[i + 1][j]),
                     .po(pv[i + 1][j]),
                     .co(cv[i][j + 1])
-                )
+                );
             end
         end
     endgenerate
@@ -37,7 +37,7 @@ module multiplier (x, y, z);
             assign pv[i + 1][N] = cv[i][N];
             assign yv[0][i] = y[i];
             assign z[i] = pv[i + 1][0];
-            assign z[i + N] = pv[N][i + 1]
+            assign z[i + N] = pv[N][i + 1];
         end
     endgenerate
 endmodule
