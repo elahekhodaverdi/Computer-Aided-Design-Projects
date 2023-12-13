@@ -39,7 +39,7 @@ module datapath(clk, rst, load_a, load_sel, is_finished, res);
 
     PU PU_1(.clk(clk), .a1(a1), .a2(a2), .a3(a3), .a4(a4), .w1(W_out[0]), .w2(W_out[1]), .w3(W_out[2]), .w4(W_out[3]), .out(PU1));
     PU PU_2(.clk(clk), .a1(a1), .a2(a2), .a3(a3), .a4(a4), .w1(W_out[4]), .w2(W_out[5]), .w3(W_out[6]), .w4(W_out[7]), .out(PU2));
-    PU PU_3(.clk(clk), .a1(a1), .a2(a2), .a3(a3), .a4(a4), .w1(W_out[8]), .w2(W_out[9]), .w3(W_ out[10]), .w4(W_out[11]), .out(PU3));
+    PU PU_3(.clk(clk), .a1(a1), .a2(a2), .a3(a3), .a4(a4), .w1(W_out[8]), .w2(W_out[9]), .w3(W_out[10]), .w4(W_out[11]), .out(PU3));
     PU PU_4(.clk(clk), .a1(a1), .a2(a2), .a3(a3), .a4(a4), .w1(W_out[12]), .w2(W_out[13]), .w3(W_out[14]), .w4(W_out[15]), .out(PU4));
 
     // select maximum value
