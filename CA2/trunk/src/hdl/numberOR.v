@@ -1,7 +1,7 @@
 module numberOR(in, out);
     parameter N = 32;
     input [N - 1 : 0] in;
-    output [N - 1 : 0] out;
+    output out;
     wire [N - 1 : 0] result;
     assign out = result [N - 1];
     assign result[0] = in[0];

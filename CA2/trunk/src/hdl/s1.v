@@ -1,4 +1,4 @@
-module s1 #(parameter N = 1) (D0, D1, D2, D3, A1, B1, A0, clr, clk, out);
+module S1 #(parameter N = 1) (D0, D1, D2, D3, A1, B1, A0, clr, clk, out);
     input [N-1:0] D0, D1, D2, D3;
     input A1, B1, A0, clr, clk;
     output reg [N-1:0] out;
