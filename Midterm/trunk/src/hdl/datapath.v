@@ -96,12 +96,12 @@ module datapath(
     counter2 #(2, 3) buf_mac_c(.clk(clk), .init(init_counters), .load(1'b0), .enable(macbuf_c_en), .load_value(2'b0),  .increment_value(2'b01),.count(buf_mac_index), .carry_out(co_buf_mac_index));
     counter2 #(4, 12) shift_c(.clk(clk), .init(init_temps_counter), .load(1'b0), .enable(shift_c_en), .load_value(4'b0),  .increment_value(4'b0001),.count(shift_steps), .carry_out(co_shift));
     buffer4x1 buffmac(.clk(clk), .init(init_mac_buf),.address(buf_mac_index),  .data_in(res_mac), .write(buf_mac_we), .data_out(buf_mac));
-    assign index1 = row_img_temp + {5'b0,col_img};
+    assign index1 = row_img_temp + {5'b0, col_img};
     assign index2 = filter_addr + {5'b0, row_filter}; 
     assign index3 = res_addr + {row_res};
     assign index4 = x_load_buf8*4 + {y_load_buf8}*8;
     assign index5 = x3 + y3*8;
-    assign index6 = {1'b0,1'b0,row_filter}*4;
+    assign index6 = {1'b0,1'b0, row_filter}*4;
     assign index7 = x3+y3*4;
-    assign y_load_buf8 = {1'b0,y_temp_wr_buf8} + {jump,1'b0,1'b0};
+    assign y_load_buf8 = {1'b0, y_temp_wr_buf8} + {jump,1'b0,1'b0};
 endmodule

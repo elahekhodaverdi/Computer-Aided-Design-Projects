@@ -7,7 +7,7 @@ module Memory(
     output reg [31:0] data_out
 );
 
-    parameter FILENAME_X = "file/test3456.dat";
+    parameter FILENAME_X = "file/test1234.dat";
     localparam WIDTH = 32;
     localparam DEPTH = 128;
     reg [WIDTH-1:0] memory [DEPTH-1:0];

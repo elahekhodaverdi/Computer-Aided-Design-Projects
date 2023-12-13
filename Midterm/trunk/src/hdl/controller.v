@@ -1,20 +1,20 @@
 `define idle 5'b00000
 `define init 5'b00001
 `define load_filter 5'b00010
-`define load_8_x1 5'b00011
-`define load_8_x2 5'b00100
-`define nex_row8 5'b00101
-`define load_buf4x4 5'b00110
-`define mac 5'b00111
-`define wb_buf_mac 5'b01000
-`define idk 5'b01001 
-`define wb_memory 5'b01010 
-`define shift 5'b01011 
-`define next_row_img 5'b01100 
-`define check 5'b01101
-`define check_shift 5'b01110
-`define done 5'b01111
-`define check_load8 5'b10000
+`define check_load8 5'b00011
+`define load_8_x1 5'b00100
+`define load_8_x2 5'b00101
+`define nex_row8 5'b00110
+`define load_buf4x4 5'b00111
+`define mac 5'b01000
+`define wb_buf_mac 5'b01001
+`define idk 5'b01010
+`define wb_memory 5'b01011
+`define shift 5'b01100
+`define next_row_img 5'b01101
+`define check 5'b01110
+`define check_shift 5'b01111
+`define done 5'b10000
 
 
 module controller(
@@ -65,7 +65,7 @@ module controller(
 
     always @(ps) begin 
         {load_addrs, load_row_img, init_counters, row_img_en, row_filter_en, row_res_en, row_img_temp_en} <= 7'b0;
-        {sel_mem_w, buf8_we, buf4w_we, buf4f_we, shift_en, y_load_buf8_e, macbuf_c_en} <= 7'b0;
+        {sel_mem_w, buf8_we, buf4w_we, buf4f_we, shift_en, y_load_buf8_e, macbuf_c_en, done} <= 8'b0;
         {x_load_buf8_e, mac_c_en, jump, c3_en, load_mac, init_mac, shift_c_en, load_row_img_temp} <= 8'b0;
         {en_mac_c, step_c_en, init_mac_buf, buf_mac_we, we_memory, col_img_en, init_temps_counter} <= 7'b0;
         case(ps)
@@ -83,18 +83,18 @@ module controller(
                     sel_mem_w <= 1'b1;
                     load_row_img <= 1'b1;
                     load_row_img_temp <= 1'b1;
-             end
-            `load_8_x1:
-            begin
-                col_img_en <= 1'b1;
+                end
+            `load_8_x1: begin
+                    col_img_en <= 1'b1;
+                    x_load_buf8_e <= 1'b1;
+                    buf8_we <= 1'b1;
+                end
+            `load_8_x2: begin
                 x_load_buf8_e <= 1'b1;
-                buf8_we <= 1'b1;
-             end
-            `load_8_x2:begin
-                x_load_buf8_e <= 1'b1;
                 col_img_en <= 1'b1;
                 buf8_we <= 1'b1;
-                jump <= 1;end
+                jump <= 1;
+            end
             `nex_row8: begin 
                 row_img_temp_en <= 1'b1;
                 y_load_buf8_e <= 1'b1;
@@ -107,14 +107,14 @@ module controller(
                 load_mac <= 1'b1;
                 c3_en <=1'b1;
                 mac_c_en <= 1'b1;
-             end
+            end
             `wb_buf_mac: begin                 
                 buf_mac_we <= 1'b1;
                 macbuf_c_en <= 1'b1;
-                 end
+            end
             `idk: begin 
                 init_mac <= 1'b1;
-             end
+            end
             `wb_memory: begin
                 we_memory <= 1'b1;
                 row_res_en <= 1'b1;
@@ -124,7 +124,7 @@ module controller(
             begin 
                 shift_c_en <= 1'b1;
                 shift_en <= 1'b1;
-             end
+            end
             `check_shift: begin  end
             `next_row_img: begin 
                 row_img_en <= 1'b1;
@@ -133,7 +133,7 @@ module controller(
             `check: begin
                     init_temps_counter <= 1'b1;
                     load_row_img_temp <= 1'b1;
-              end
+            end
             `done: begin done <= 1'b1;
             we_memory <= 1'b1;
             end
@@ -166,7 +166,7 @@ module controller(
         if (rst)
             ps <= `idle;
         else
-         ps <= ns;
+            ps <= ns;
      end
 
 endmodule

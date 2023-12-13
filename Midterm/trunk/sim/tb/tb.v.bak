@@ -8,9 +8,9 @@ module tb();
     .clk(clk),
     .rst(rst),
     .start(start),
-    .X(7'd5),
+    .X(7'd2),
     .Y(7'd71),
-    .Z(7'd83),
+    .Z(7'd81),
     .done(done));
 
     always #5 clk = ~clk;
