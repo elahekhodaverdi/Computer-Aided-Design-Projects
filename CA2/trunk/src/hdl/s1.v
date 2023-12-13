@@ -6,7 +6,10 @@ module s1 #(parameter N = 1) (D0, D1, D2, D3, A1, B1, A0, clr, clk, out);
     wire [N-1:0] RM;
     assign S1 = A1 || B1;
     assign S2 = A0 && clr;
-    mux4to1 #(N) mux(.a(D0), .b(D1), .c(D2), .d(D3), .sel({S1,S0}), .out(RM));
+    assign RM = ({S1,S0} == 2'b00) ? D0 :
+                 ({S1,S0} == 2'b01) ? D1 : 
+                 ({S1,S0} == 2'b10) ? D2 :
+                 ({S1,S0} == 2'b11) ? D3 ;
     always @(posedge clk) begin
         if(clr)
             out <= {N{'b0}};
