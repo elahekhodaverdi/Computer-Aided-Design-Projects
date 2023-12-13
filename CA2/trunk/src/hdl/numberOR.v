@@ -10,8 +10,8 @@ module numberOR(in, out);
         for (i = 1; i < N; i = i + 1)
         begin: or_ops
             OR orr(
-                .in1(in[i]),
-                .in2(result[i - 1]),
+                .a(in[i]),
+                .b(result[i - 1]),
                 .out(result[i]));
         end
     endgenerate
