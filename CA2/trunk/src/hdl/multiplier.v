@@ -1,36 +1,43 @@
-module multiplier #(parameter N = 4) (
-    input [N-1:0] A,
-    input [N-1:0] B,
-    output [2*N-1:0] P
-);
+module multiplier (x, y, z);
+    parameter N = 32;
+    input[N - 1 : 0] x, y;
+    output [2*N - 1 : 0] z;
+
+    wire xv [N : 0][N : 0];
+    wire yv [N : 0][N : 0];
+    wire cv [N : 0][N : 0];
+    wire pv [N : 0][N : 0];
+
     genvar i, j;
-    wire [N-1:0] partial_products [N-1:0];
-    wire [N-1:0] sum, carry;
-
-    // Generate partial products
     generate
-        for (i = 0; i < N; i = i + 1) begin : gen_partial_products
-            for (j = 0; j < N; j = j + 1) begin : gen_and
-                assign partial_products[i][j] = A[i] & B[j];
+        for (i = 0; i < N; i = i + 1)
+        begin: gen_rows
+            for (j = 0; j < N; j = j + 1)
+            begin: gen_cols
+                bit_multiplier bm(
+                    .xi(xv[i][j]), 
+                    .yi(yv[i][j]),
+                    .pi(pv[i][j + 1]),
+                    .ci(cv[i][j]), 
+                    .xo(xv[i][j + 1]),
+                    .yo(yv[i + 1][j]),
+                    .po(pv[i + 1][j]),
+                    .co(cv[i][j + 1])
+                )
             end
         end
     endgenerate
 
-    // Sum partial products using the provided full adder
     generate
-        for (i = 0; i < N; i = i + 1) begin : gen_sum
-            fulladder fa (.a(partial_products[0][i]), .b(partial_products[1][i-1]), .cin(0), .sum(sum[i]), .co(carry[i]));
-        end
-    endgenerate
-
-    // Generate product
-    generate
-        for (i = 0; i < 2*N; i = i + 1) begin : gen_product
-            if (i < N) begin
-                assign P[i] = sum[i];
-            end else begin
-                assign P[i] = carry[i-N];
-            end
+        for (i = 0; i < N; i = i + 1)
+        begin: sides
+            assign xv[i][0] = x[i];
+            assign cv[i][0] = 1'b0;
+            assign pv[0][i + 1] = 1'b0;
+            assign pv[i + 1][N] = cv[i][N];
+            assign yv[0][i] = y[i];
+            assign z[i] = pv[i + 1][0];
+            assign z[i + N] = pv[N][i + 1]
         end
     endgenerate
 endmodule
