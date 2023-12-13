@@ -1,7 +1,8 @@
-module multiplier (x, y, z);
+module multiplier (x, y, out);
     parameter N = 32;
     input[N - 1 : 0] x, y;
-    output [2*N - 1 : 0] z;
+    output[31:0] out;
+    wire [2*N - 1 : 0] z;
 
     wire xv [N : 0][N : 0];
     wire yv [N : 0][N : 0];
@@ -40,4 +41,7 @@ module multiplier (x, y, z);
             assign z[i + N] = pv[N][i + 1];
         end
     endgenerate
+
+    assign out = z[2*N-1:N];
+
 endmodule

@@ -32,10 +32,10 @@ module datapath(clk, rst, load_a, load_sel, is_finished, res);
     register #(32) rega4(.clk(clk), .rst(rst), .ld(load_a), .in(ai4) , .out(a4));
 
     // select registers load values(between activation output and memory output)
-    mux2to1 #(32) mxa1(.a(PU1), .b(X_out[0]) , .sel(load_sel), .out(ai1));
-    mux2to1 #(32) mxa2(.a(PU2), .b(X_out[1]) , .sel(load_sel), .out(ai2));
-    mux2to1 #(32) mxa3(.a(PU3), .b(X_out[2]) , .sel(load_sel), .out(ai3));
-    mux2to1 #(32) mxa4(.a(PU4), .b(X_out[3]) , .sel(load_sel), .out(ai4));
+    mux2to1 mxa1(.a(PU1), .b(X_out[0]) , .sel(load_sel), .out(ai1));
+    mux2to1 mxa2(.a(PU2), .b(X_out[1]) , .sel(load_sel), .out(ai2));
+    mux2to1 mxa3(.a(PU3), .b(X_out[2]) , .sel(load_sel), .out(ai3));
+    mux2to1 mxa4(.a(PU4), .b(X_out[3]) , .sel(load_sel), .out(ai4));
 
     PU PU_1(.clk(clk), .rst(rst), .a1(a1), .a2(a2), .a3(a3), .a4(a4), .w1(W_out[0]), .w2(W_out[1]), .w3(W_out[2]), .w4(W_out[3]), .out(PU1));
     PU PU_2(.clk(clk), .rst(rst), .a1(a1), .a2(a2), .a3(a3), .a4(a4), .w1(W_out[4]), .w2(W_out[5]), .w3(W_out[6]), .w4(W_out[7]), .out(PU2));
