@@ -1,5 +1,5 @@
 module numberOR(in, out);
-    parameter N = 32;
+    parameter N = 5;
     input [N - 1 : 0] in;
     output out;
     wire [N - 1 : 0] result;

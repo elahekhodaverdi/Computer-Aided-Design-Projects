@@ -1,4 +1,4 @@
-module C2 #(parameter N = 32) (D0, D1, D2, D3, A1, B1, A0, B0, F);
+module C2 #(parameter N = 5) (D0, D1, D2, D3, A1, B1, A0, B0, F);
     input [N - 1 : 0] D0, D1, D2, D3;
     input A1, B1, A0, B0;
     output [N - 1 : 0] F;

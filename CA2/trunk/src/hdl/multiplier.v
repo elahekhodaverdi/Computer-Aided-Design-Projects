@@ -1,47 +1,47 @@
 module multiplier (x, y, out);
-    parameter N = 32;
-    input[N - 1 : 0] x, y;
-    output[31:0] out;
+    parameter N = 5;
+    input signed [N - 1 : 0] x, y;
+    output signed [2*N - 1 : 0] out;
     wire [2*N - 1 : 0] z;
+    assign out = x * y;
+    // wire xv [N : 0][N : 0];
+    // wire yv [N : 0][N : 0];
+    // wire cv [N : 0][N : 0];
+    // wire pv [N : 0][N : 0];
 
-    wire xv [N : 0][N : 0];
-    wire yv [N : 0][N : 0];
-    wire cv [N : 0][N : 0];
-    wire pv [N : 0][N : 0];
+    // genvar i, j;
+    // generate
+    //     for (i = 0; i < N; i = i + 1)
+    //     begin: gen_rows
+    //         for (j = 0; j < N; j = j + 1)
+    //         begin: gen_cols
+    //             bit_multiplier bm(
+    //                 .xi(xv[i][j]), 
+    //                 .yi(yv[i][j]),
+    //                 .pi(pv[i][j + 1]),
+    //                 .ci(cv[i][j]), 
+    //                 .xo(xv[i][j + 1]),
+    //                 .yo(yv[i + 1][j]),
+    //                 .po(pv[i + 1][j]),
+    //                 .co(cv[i][j + 1])
+    //             );
+    //         end
+    //     end
+    // endgenerate
 
-    genvar i, j;
-    generate
-        for (i = 0; i < N; i = i + 1)
-        begin: gen_rows
-            for (j = 0; j < N; j = j + 1)
-            begin: gen_cols
-                bit_multiplier bm(
-                    .xi(xv[i][j]), 
-                    .yi(yv[i][j]),
-                    .pi(pv[i][j + 1]),
-                    .ci(cv[i][j]), 
-                    .xo(xv[i][j + 1]),
-                    .yo(yv[i + 1][j]),
-                    .po(pv[i + 1][j]),
-                    .co(cv[i][j + 1])
-                );
-            end
-        end
-    endgenerate
+    // generate
+    //     for (i = 0; i < N; i = i + 1)
+    //     begin: sides
+    //         assign xv[i][0] = x[i];
+    //         assign cv[i][0] = 1'b0;
+    //         assign pv[0][i + 1] = 1'b0;
+    //         assign pv[i + 1][N] = cv[i][N];
+    //         assign yv[0][i] = y[i];
+    //         assign z[i] = pv[i + 1][0];
+    //         assign z[i + N] = pv[N][i + 1];
+    //     end
+    // endgenerate
 
-    generate
-        for (i = 0; i < N; i = i + 1)
-        begin: sides
-            assign xv[i][0] = x[i];
-            assign cv[i][0] = 1'b0;
-            assign pv[0][i + 1] = 1'b0;
-            assign pv[i + 1][N] = cv[i][N];
-            assign yv[0][i] = y[i];
-            assign z[i] = pv[i + 1][0];
-            assign z[i + N] = pv[N][i + 1];
-        end
-    endgenerate
-
-    assign out = z[2*N-1:N];
+    // assign out = z;
 
 endmodule
