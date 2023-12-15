@@ -2,7 +2,6 @@ module multiplier (x, y, out);
     parameter N = 5;
     input signed [N - 1 : 0] x, y;
     output signed [2*N - 1 : 0] out;
-    wire [2*N - 1 : 0] z;
     assign out = x * y;
     // wire xv [N : 0][N : 0];
     // wire yv [N : 0][N : 0];

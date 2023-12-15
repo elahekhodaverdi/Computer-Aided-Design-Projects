@@ -1,4 +1,4 @@
-module adder #(parameter N = 10) (input [N-1:0] a, b, output [N:0] sum);
+module adder #(parameter N = 11) (input [N-1:0] a, b, output [N-1:0] sum);
     wire [N:0] c;
     genvar i;
     fulladder f0 (.a(a[0]), .b(b[0]), .cin(1'b0), .sum(sum[0]), .co(c[1]));
@@ -7,5 +7,4 @@ module adder #(parameter N = 10) (input [N-1:0] a, b, output [N:0] sum);
             fulladder fi (.a(a[i]), .b(b[i]), .cin(c[i]), .sum(sum[i]), .co(c[i+1]));
         end
     endgenerate
-    assign sum[N] = c[N];
 endmodule

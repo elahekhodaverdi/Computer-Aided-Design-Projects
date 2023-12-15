@@ -22,9 +22,9 @@ module PU (clk, rst, a1, a2, a3, a4, w1, w2, w3, w4, out);
     register #(10) reg_mul4(clk, rst, 1'b1, reg_mul4_inp, reg_mul4_out);
 
     // second cycle
-    adder #(10) addr1(.a(reg_mul1_out), .b(reg_mul2_out), .sum(addr1_res));
-    adder #(10) addr2(.a(reg_mul3_out), .b(reg_mul4_out), .sum(addr2_res));
-    adder #(11) addr3(.a(addr1_res), .b(addr2_res), .sum(addr3_res));
+    adder #(11) addr1(.a({reg_mul1_out[9], reg_mul1_out}), .b({reg_mul2_out[9], reg_mul2_out}), .sum(addr1_res));
+    adder #(11) addr2(.a({reg_mul3_out[9], reg_mul3_out}), .b({reg_mul4_out[9], reg_mul4_out}), .sum(addr2_res));
+    adder #(12) addr3(.a({addr1_res[10], addr1_res}), .b({addr2_res[10], addr2_res}), .sum(addr3_res));
 
     register #(12) reg_addr(clk, rst, 1'b1, addr3_res, reg_addr_out);
 

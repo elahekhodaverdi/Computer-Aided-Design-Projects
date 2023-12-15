@@ -1,19 +1,24 @@
 `timescale 1ps/1ps
 module multiplierTB();
-    reg [31:0] a, b;
-    wire [63:0] product;
+    reg [4:0] a, b;
+    wire [9:0] product;
 
-    multiplier #(32) U1 (.x(a), .y(b), .z(product));
+    multiplier #(5) U1 (.x(a), .y(b), .out(product));
 
     initial begin
 
-        a = 32'd24; // 3
-        b = 32'd47; // 5
+        a = 5'd2; // 2
+        b = 5'd4; // 4
 
         #10;
 
-        a = 32'd11; // 15
-        b = 32'd1; // 10
+        a = 5'd27; // -5 (2's complement)
+        b = 5'd29; // -3 (2's complement)
+
+        #10;
+
+        a = 5'd11; // 11
+        b = 5'd1; // 1
 
         #10;
 
