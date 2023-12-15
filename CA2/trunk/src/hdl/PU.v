@@ -9,7 +9,6 @@ module PU (clk, rst, a1, a2, a3, a4, w1, w2, w3, w4, out);
     wire [9:0] reg_mul1_out, reg_mul2_out, reg_mul3_out, reg_mul4_out; 
     wire [10:0] addr1_res, addr2_res;
     wire [11:0] reg_addr_out, addr3_res;
-    wire [11:0] activation_result;
 
     // first cycle
     multiplier multiplier1(.x(a1), .y(w1), .out(reg_mul1_inp));
@@ -30,8 +29,6 @@ module PU (clk, rst, a1, a2, a3, a4, w1, w2, w3, w4, out);
     register #(12) reg_addr(clk, rst, 1'b1, addr3_res, reg_addr_out);
 
     // third cycle
-    activation act(reg_addr_out, activation_result);
-    assign out = {activation_result[11], activation_result[6], activation_result[5],
-                     activation_result[4], activation_result[3]};
+    activation act(reg_addr_out, out);
 
 endmodule
