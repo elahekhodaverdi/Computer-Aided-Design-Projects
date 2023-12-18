@@ -42,17 +42,21 @@ module controller(start, rst, clk, is_finished, load_a, load_sel, done);
     OR4 OR_Q1(.a(Q11), .b(Q12), .c(Q13), .d(1'b0), .out(or_Q1));
     OR4 OR_Q0(.a(Q01), .b(Q02), .c(Q03), .d(Q04), .out(or_Q0));
 
-    DFF dff_Q2(.clk(clk), .rst(rst), .in(or_Q2), .out(Q2));
-    DFF dff_Q1(.clk(clk), .rst(rst), .in(or_Q1), .out(Q1));
-    DFF dff_Q0(.clk(clk), .rst(rst), .in(or_Q0), .out(Q0));
+    DFF #(1) dff_Q2(.clk(clk), .rst(rst), .in(or_Q2), .out(Q2));
+    DFF #(1) dff_Q1(.clk(clk), .rst(rst), .in(or_Q1), .out(Q1));
+    DFF #(1) dff_Q0(.clk(clk), .rst(rst), .in(or_Q0), .out(Q0));
     
     wire or1_loada, or2_loada;
+    wire load_aa, load_sell, donee;
+
     AND4 load_a1(.a(not_Q2), .b(not_Q1), .c(Q0), .d(1'b1), .out(or1_loada));
-    AND4 load_a2(.a(Q2), .b(not_Q1), .c(not_Q0), .d(1'b1), .out(load_sel));
-    OR load_ao(.a(or1_loada), .b(or2_loada), .out(load_a));
+    AND4 load_a2(.a(Q2), .b(not_Q1), .c(not_Q0), .d(1'b1), .out(or2_loada));
+    OR load_ao(.a(or1_loada), .b(or2_loada), .out(load_aa));
+    AND4 load_selo(.a(not_Q2), .b(not_Q1), .c(Q0), .d(1'b1), .out(load_sell));
+    AND4 done_o(.a(Q2), .b(Q1), .c(not_Q0), .d(1'b1), .out(donee));
 
-
-    AND4 load_selo(.a(not_Q2), .b(not_Q1), .c(Q0), .d(1'b1), .out(load_sel));
-    AND4 done_o(.a(Q2), .b(Q1), .c(not_Q0), .d(1'b1), .out(load_sel));
+    assign done = donee;
+    assign load_a = load_aa;
+    assign load_sel = load_sell;
 
 endmodule
