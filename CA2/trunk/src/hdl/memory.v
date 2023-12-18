@@ -1,6 +1,6 @@
 module Memory(X_out, W_out);
 
-  parameter FILENAME_X = "sim/file/input.dat";
+  parameter FILENAME_X = "input.dat";
   localparam WIDTH = 5;
 
   output reg [4:0] W_out [15:0];
@@ -13,7 +13,7 @@ module Memory(X_out, W_out);
       if (i == 0 || i == 5 || i == 10 || i == 15) begin
         W_out[i] = 5'b01000;
       end else begin
-        W_out[i] = 32'b11110;
+        W_out[i] = 5'b11110;
       end
     end
   end
