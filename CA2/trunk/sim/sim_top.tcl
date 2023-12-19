@@ -13,21 +13,35 @@
 
 #============================ Add verilog files  ===============================
 # Pleas add other module here	
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/absto2scomplement.v
 	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/activation.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/check.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/adder.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/and.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/and4.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/bit_multiplier.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/c1.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/c2.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/carryout.v
 	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/check.v
 	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/controller.v
 	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/datapath.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/encoder4to2.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/fp_adder.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/fp_multiplier.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/dff.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/encoder.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/fulladder.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/maxnet.v
 	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/memory.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/mux2-1.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/mux4-1.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/multiplier.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/mux2to1.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/mux4to1.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/not.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/numberOR.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/or.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/or4.v
 	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/PU.v
 	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/register.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/maxnet.v
-
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/s1.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/s2.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/xor.v
 
 	vlog 	+acc -incr -source  +incdir+$inc_path +define+SIM 	./tb/$TB.v
 	onerror {break}
@@ -40,7 +54,7 @@
 #======================= adding signals to wave window ==========================
 
 
-	add wave -hex -group 	 	{TB}				sim:/$TB/*
+	add wave -binary -group 	 	{TB}				sim:/$TB/*
 	add wave -hex -group 	 	{top}				sim:/$TB/uut/*	
 	add wave -hex -group -r		{all}				sim:/$TB/*
 
