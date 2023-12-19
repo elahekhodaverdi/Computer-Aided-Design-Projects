@@ -1,6 +1,6 @@
 module Memory(X_out, W_out);
 
-  parameter FILENAME_X = "input.dat";
+  parameter FILENAME_X = "sim/file/input.dat";
   localparam WIDTH = 5;
 
   output reg [4:0] W_out [15:0];
