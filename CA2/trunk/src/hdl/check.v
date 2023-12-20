@@ -24,7 +24,7 @@ module check (a, is_finished);
     XOR xor_3_0001(a[1], 1'b0, bits_0001[1]);
     XOR xor_4_0001(a[0], 1'b1, bits_0001[0]);
     OR4 OR_0001(bits_0001[3], bits_0001[2], bits_0001[1], bits_0001[0], check_0001);
-    OR4 OR_CHECK(check_1000, check_0100, check_0010, check_0001, is_not_finished);
+    AND4 AND_CHECK(check_1000, check_0100, check_0010, check_0001, is_not_finished);
     NOT nott(is_not_finished, is_finished);
     
 endmodule
