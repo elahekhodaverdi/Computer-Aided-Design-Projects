@@ -15,7 +15,6 @@ module datapath(clk, rst, x, y, z, rst_acc, rst_res_reg, mem_en, cntr16_img_en, 
     wire [7:0] mem_wr_adr, mem_rd_adr, mem_offset_out, cntr4_filter_res, cntr16_img_res, mem_cntr_res;
     wire [7:0] filter_rd_data, img_rd_adr, row_cntr_res, col_cntr_res, cntr16_res, img_slice_rd_data;
     wire [7:0] mult_res, cntr_reg4_res, cntr13_res, x_offset;
-    wire [11:0] acc_out, acc_in;
     wire [31:0] mem_wr_data, mem_rd_data, img_rd_data;
 
     memory mem(clk, mem_en, mem_wr_adr, mem_wr_data, mem_rd_adr, mem_rd_data, wr_file);
@@ -41,12 +40,9 @@ module datapath(clk, rst, x, y, z, rst_acc, rst_res_reg, mem_en, cntr16_img_en, 
 
     buffer_4 img_slice(clk, img_slice_en, row_cntr_res << 2, img_rd_data, cntr16_res, img_slice_rd_data);
 
-    multiplier mult(img_slice_rd_data, filter_rd_data, mult_res);
-    adder12 addr4({4'b0000, mult_res}, acc_out, acc_in);
-    register1word acc(clk, acc_en, rst | rst_acc, acc_in, acc_out);
-
     counter #(4) cntr_reg4 (clk, rst, cntr_reg4_en, co_cntr_reg4, cntr_reg4_res);
-    register4word res_buffer(clk, res_buffer_en, rst | rst_res_reg, cntr_reg4_res, acc_out[11:4], mem_wr_data);
+
+    mac mac1(clk, rst, rst_acc, rst_res_reg, acc_en, res_buffer_en, img_slice_rd_data, filter_rd_data, cntr_reg4_res, mem_wr_data);
 
     counter #(13) cntr13 (clk, rst, cntr13_en, co_cntr13, cntr13_res);
     incrementerby4 inc(clk, inc_en, rst, inc_ld, x, x_offset);
