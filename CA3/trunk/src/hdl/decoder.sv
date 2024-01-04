@@ -1,6 +1,6 @@
 module decoder (a, out);
     parameter N = 3;
-    input [$clog2(N)-1:0] a;
+    input [7:0] a;
     output reg [N-1:0] out;
     reg [N-1:0] i;
     always @(*) begin

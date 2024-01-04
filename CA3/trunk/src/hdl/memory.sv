@@ -1,7 +1,6 @@
 module memory (clk, rd_adr, rd_data);
     parameter MAX_MEM_SIZE = 128; 
-    parameter FILE_INPUT = "./sim/file/test.txt";
-    parameter FILE_OUTPUT = "./sim/file/output.dat";
+    parameter FILE_INPUT = "./sim/file/new_test.txt";
     // parameter FILE_INPUT = "file/test.txt";
     // parameter FILE_OUTPUT = "file/output.txt";
     input clk;
@@ -11,12 +10,10 @@ module memory (clk, rd_adr, rd_data);
     
     reg [31:0] mem [0:MAX_MEM_SIZE-1];
 
-    assign rd_data = mem[rd_adr];
-
-    always @(posedge clk) begin
-        if (wr_en) begin
-            mem[wr_adr] <= wr_data;
-        end
+    initial begin
+        $readmemh(FILE_INPUT, mem);
     end
+
+    assign rd_data = mem[rd_adr];
 
 endmodule

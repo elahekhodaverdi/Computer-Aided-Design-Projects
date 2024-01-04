@@ -1,8 +1,9 @@
 module PE (clk, rst, rst_acc, rst_res_reg, res_buffer_en, acc_en, wr_en, wr_file,
-           img_pixel, filter_value, res_index, wr_adr);
-    parameter MAX_MEM_SIZE = 128; 
-    parameter FILE_OUTPUT = "./sim/file/output1.dat";
+           img_pixel, filter_value, res_index, wr_adr, pe_num);
+    
+    parameter MAX_MEM_SIZE = 128;
 
+    input [31:0] pe_num;
     input clk, rst, rst_acc, rst_res_reg, acc_en, wr_en, wr_file, res_buffer_en;
     input [7:0] img_pixel, filter_value, res_index, wr_adr;
     wire [7:0] mac_out;
@@ -22,7 +23,9 @@ module PE (clk, rst, rst_acc, rst_res_reg, res_buffer_en, acc_en, wr_en, wr_file
 
     always @(posedge clk) begin
         if (wr_file)begin
-            $writememh(FILE_OUTPUT, mem);
+            string file_output;
+            file_output = $sformatf("./sim/file/output_%d.dat", pe_num);
+            $writememh(file_output, mem);
         end
     end
 

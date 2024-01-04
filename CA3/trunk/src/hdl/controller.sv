@@ -3,7 +3,7 @@
 `define IDLE   4'b0000
 `define INIT   4'b0001
 `define LD_FILTER   4'b0010
-`define NEXT_FILTER 4`b1011
+`define NEXT_FILTER 4'b1011
 `define LD_SLICE    4'b0011
 `define LD_BUFFER 4'b0100
 `define MAC  4'b0101

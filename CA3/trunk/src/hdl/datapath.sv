@@ -13,12 +13,12 @@ module datapath(clk, rst, x, y, z, rst_acc, rst_res_reg, mem_en, cntr16_img_en, 
     output co_cntr16_img, co_cntr4_filter, co_cntr_filters, co_cntr43, co_row_cntr, co_col_cntr, co_cntr16, co_cntr_reg4, co_cntr13;
     output [7:0] cntr43_res;
 
+    wire[NUM_FILTERS - 1: 0] filters_wr_en;
     wire [7:0] mem_wr_adr, mem_rd_adr, mem_offset_out, cntr4_filter_res, cntr16_img_res, mem_cntr_res;
     wire [7:0] img_rd_adr, row_cntr_res, col_cntr_res, cntr16_res, img_slice_rd_data;
-    wire [7:0] mult_res, cntr_reg4_res, cntr13_res, x_offset, filters_wr_en;
+    wire [7:0] mult_res, cntr_reg4_res, cntr13_res, x_offset;
     wire [31:0] mem_wr_data, mem_rd_data, img_rd_data;
-    wire [7:0] filters_rd_data[0:NUM_FILTERS-1], filter_adr;
-    wire [$clog2(NUM_FILTERS) - 1:0] cntr_filters_res;
+    wire [7:0] filters_rd_data[0:NUM_FILTERS-1], filter_adr, cntr_filters_res, mem_filter_adr;
 
     memory mem(clk, mem_rd_adr, mem_rd_data);
     assign mem_offset_out = (mem_offset_sel == 0) ? y :
@@ -26,19 +26,20 @@ module datapath(clk, rst, x, y, z, rst_acc, rst_res_reg, mem_en, cntr16_img_en, 
                             (mem_offset_sel == 2) ? z : 0;
     counter #(NUM_FILTERS) cntr_filters(clk, rst, cntr_filters_en, co_cntr_filters, cntr_filters_res);
     decoder dcdr(cntr_filters_res, filters_wr_en);
+
     counter #(4) cntr4_filter (clk, rst, cntr4_filter_en, co_cntr4_filter, cntr4_filter_res);
     counter #(16) cntr16_img (clk, rst, cntr16_img_en, co_cntr16_img, cntr16_img_res);
 
-    mux2_1 mux(cntr4_filter_res, cntr16_img_res, adr_sel, mem_cntr_res);
+    mux2_1 mux(mem_filter_adr, cntr16_img_res, adr_sel, mem_cntr_res);
     adder addr1(mem_offset_out, mem_cntr_res, mem_rd_adr);
-    //adder addr5(cntr4_filter_res, cntr_filters, filter_adr);
+    adder addr5(cntr4_filter_res, cntr_filters_res << 2, mem_filter_adr);
 
     genvar i;
     generate
         for (i = 0; i < NUM_FILTERS; i = i + 1) begin : gen_filters
             buffer_4 filter_buffer(clk, filters_wr_en[i] & filter_wr_en, cntr4_filter_res << 2, mem_rd_data, cntr16_res, filters_rd_data[i]);
             PE pe(clk, rst, rst_acc, rst_res_reg, res_buffer_en, acc_en, mem_en, wr_file,
-                  img_slice_rd_data, filters_rd_data[i], cntr_reg4_res, mem_wr_adr);
+                  img_slice_rd_data, filters_rd_data[i], cntr_reg4_res, mem_wr_adr, i);
         end
     endgenerate
 
