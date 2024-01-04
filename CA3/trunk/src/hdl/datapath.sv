@@ -4,7 +4,7 @@ module datapath(clk, rst, x, y, z, rst_acc, rst_res_reg, mem_en, cntr16_img_en, 
           inc_en, inc_ld, wr_file, adr_sel, mem_offset_sel, co_cntr16_img,
           co_cntr4_filter, co_cntr_filters, co_cntr43, co_row_cntr, co_col_cntr, co_cntr16, co_cntr_reg4, co_cntr13, cntr43_res);
 
-    parameter NUM_FILTERS = 3;
+    parameter NUM_FILTERS = 4;
     input clk, rst, mem_en, cntr16_img_en, cntr_filters_en, cntr4_filter_en, adr_sel, filter_wr_en, wr_file;
     input img_wr_en, row_cntr_en, col_cntr_en, cntr43_en, cntr16_en, img_slice_en, acc_en, cntr_reg4_en, res_buffer_en;
     input cntr13_en, inc_en, inc_ld, rst_acc, rst_res_reg;
@@ -25,7 +25,7 @@ module datapath(clk, rst, x, y, z, rst_acc, rst_res_reg, mem_en, cntr16_img_en, 
                             (mem_offset_sel == 1) ? x_offset :
                             (mem_offset_sel == 2) ? z : 0;
     counter #(NUM_FILTERS) cntr_filters(clk, rst, cntr_filters_en, co_cntr_filters, cntr_filters_res);
-    decoder dcdr(cntr_filters_res, filters_wr_en);
+    decoder #(NUM_FILTERS) dcdr(cntr_filters_res, filters_wr_en);
 
     counter #(4) cntr4_filter (clk, rst, cntr4_filter_en, co_cntr4_filter, cntr4_filter_res);
     counter #(16) cntr16_img (clk, rst, cntr16_img_en, co_cntr16_img, cntr16_img_res);
@@ -39,7 +39,7 @@ module datapath(clk, rst, x, y, z, rst_acc, rst_res_reg, mem_en, cntr16_img_en, 
         for (i = 0; i < NUM_FILTERS; i = i + 1) begin : gen_filters
             buffer_4 filter_buffer(clk, filters_wr_en[i] & filter_wr_en, cntr4_filter_res << 2, mem_rd_data, cntr16_res, filters_rd_data[i]);
             PE pe(clk, rst, rst_acc, rst_res_reg, res_buffer_en, acc_en, mem_en, wr_file,
-                  img_slice_rd_data, filters_rd_data[i], cntr_reg4_res, mem_wr_adr, i);
+                  img_slice_rd_data, filters_rd_data[i], cntr_reg4_res, mem_wr_adr, i + 1);
         end
     endgenerate
 

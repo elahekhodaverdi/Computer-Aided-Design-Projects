@@ -1,6 +1,6 @@
 module memory (clk, rd_adr, rd_data);
     parameter MAX_MEM_SIZE = 128; 
-    parameter FILE_INPUT = "./sim/file/new_test.txt";
+    parameter FILE_INPUT = "./sim/file/input.txt";
     // parameter FILE_INPUT = "file/test.txt";
     // parameter FILE_OUTPUT = "file/output.txt";
     input clk;
