@@ -42,7 +42,8 @@ module datapath(clk, rst, x, y, z, rst_acc, rst_res_reg, mem_en, cntr16_img_en, 
 
     counter #(4) cntr_reg4 (clk, rst, cntr_reg4_en, co_cntr_reg4, cntr_reg4_res);
 
-    mac mac1(clk, rst, rst_acc, rst_res_reg, acc_en, res_buffer_en, img_slice_rd_data, filter_rd_data, cntr_reg4_res, mem_wr_data);
+    PE pe1(clk, rst, rst_acc, rst_res_reg, res_buffer_en, acc_en, mem_en, wr_file,
+           img_slice_rd_data, filter_rd_data, cntr_reg4_res, mem_wr_adr);
 
     counter #(13) cntr13 (clk, rst, cntr13_en, co_cntr13, cntr13_res);
     incrementerby4 inc(clk, inc_en, rst, inc_ld, x, x_offset);
