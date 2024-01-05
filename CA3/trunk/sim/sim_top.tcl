@@ -13,22 +13,27 @@
 
 #============================ Add verilog files  ===============================
 # Pleas add other module here	
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/4_inc.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/adder.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/adder12.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/buffer_4.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/buffer_8.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/controller.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/convolution.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/counter.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/datapath.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/memory.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/multiplier.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/mux2.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/register1.v
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/register4.v
-		
-	vlog 	+acc -incr -source  +incdir+$inc_path +define+SIM 	./tb/$TB.v
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/4_inc.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/adder.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/adder12.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/buffer_4.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/buffer_8.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/controller.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/convolution.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/counter.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/datapath.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/memory.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/multiplier.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/mux2.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/register1.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/register4.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/PE.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/mac.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/decoder.sv
+	
+
+	
+	vlog 	+acc -incr -source  +incdir+$inc_path +define+SIM 	./tb/$TB.sv
 	onerror {break}
 
 #================================ simulation ====================================
