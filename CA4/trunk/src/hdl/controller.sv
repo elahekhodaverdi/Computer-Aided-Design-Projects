@@ -20,8 +20,8 @@ module controller(clk, start,rst, rst_acc, rst_res_reg, mem_en, wr_file,
 
     input clk, start;
     output reg rst, mem_en, adr_sel, filter_wr_en, wr_file;
-    output reg img_wr_en, col_cntr_en, img_slice_en, acc_en, res_buffer_en;
-    output reg cntr13_en, inc_en, inc_ld, done, rst_acc, rst_res_reg;
+    output reg img_wr_en, img_slice_en, acc_en, res_buffer_en;
+    output reg inc_en, inc_ld, done, rst_acc, rst_res_reg;
     output reg[1:0] mem_offset_sel;
     output reg [7:0] countr16_img, countr4_filter, countr43, countr_filters, row_countr, col_countr, countr_reg4, countr16;
     
@@ -38,7 +38,7 @@ module controller(clk, start,rst, rst_acc, rst_res_reg, mem_en, wr_file,
     reg[3:0] ps =`IDLE;
 
     always @(start, cntr16_img, cntr4_filter, row_cntr,
-             cntr16, cntr43, cntr_reg4, co_cntr13, ps) begin 
+             cntr16, cntr43, cntr_reg4, cntr13, ps) begin 
         case(ps)
             `IDLE:   ns <= ~start ? `IDLE : `INIT;
             `INIT:   ns <= start ? `INIT : `LD_FILTER;
@@ -58,7 +58,7 @@ module controller(clk, start,rst, rst_acc, rst_res_reg, mem_en, wr_file,
     always @(ps) begin
         {rst, mem_en, adr_sel, filter_wr_en,
         img_wr_en, img_slice_en, acc_en,
-        res_buffer_en, cntr13_en, inc_en, inc_ld, done, mem_offset_sel, wr_file, rst_acc, rst_res_reg} = 0;
+        res_buffer_en, inc_en, inc_ld, done, mem_offset_sel, wr_file, rst_acc, rst_res_reg} = 0;
         case(ps)
             `INIT:begin  rst = 1; inc_ld = 1;   end
             `LD_FILTER: begin  adr_sel = 1; filter_wr_en = 1; mem_offset_sel = 0; end
