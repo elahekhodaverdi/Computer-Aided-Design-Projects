@@ -96,6 +96,7 @@ module controller(clk, start,rst, rst_acc, rst_res_reg, mem_en, wr_file,
 
     assign countr16_img = cntr16_img;
     assign countr_filters = cntr_filters;
+    assign countr4_filter = cntr4_filter;
     assign countr43 = cntr43;
     assign row_countr = row_cntr;
     assign col_countr = col_cntr;

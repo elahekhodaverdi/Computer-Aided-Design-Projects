@@ -24,7 +24,7 @@ module PE (clk, rst, rst_acc, rst_res_reg, res_buffer_en, acc_en, wr_en, wr_file
     always @(posedge clk) begin
         if (wr_file)begin
             string file_output;
-            file_output = $sformatf("trunk/sim/file/my_output_%0d.dat", pe_num);
+            file_output = $sformatf("./sim/file/my_output_%0d.dat", pe_num);
             //file_output = $sformatf("file/my_output_%0d.dat", pe_num);
             $writememh(file_output, mem);
         end
