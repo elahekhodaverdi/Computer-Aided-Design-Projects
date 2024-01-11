@@ -1,35 +1,20 @@
-module PE (clk, rst, rst_acc, rst_res_reg, res_buffer_en, acc_en, wr_en, wr_file,
-           img_pixel, filter_value, res_index, wr_adr, pe_num);
+module pe(clk, start, z, imgs, filters, pe_num, layer_num, done);
+    parameter NUM_IMAGES = 1;
+    parameter IMG_SIZE = 16;
+    input clk, start;
+    input [7:0] z;
+    input [7:0] imgs[0 : NUM_IMAGES - 1][0:IMG_SIZE * IMG_SIZE - 1];
+    input [7:0] filters[0:NUM_IMAGES - 1][0:15];
+    input [31:0] pe_num, layer_num;
+    output done;
+    wire rst, rst_acc, acc_en, res_buffer_en, rst_res_reg, wr_en, wr_file;
+    wire[7:0] img_buffer_index, buffer_cntr, res_index, wr_adr;
+
+    pe_dp dp(clk, rst, rst_acc, acc_en, res_buffer_en, rst_res_reg, wr_en, wr_file,
+                z, img_buffer_index, buffer_cntr, res_index, wr_adr, imgs, filters, pe_num, layer_num);
     
-    parameter MAX_MEM_SIZE = 128;
+    pe_cu cu(clk, start, rst, rst_acc, acc_en,
+             res_buffer_en, rst_res_reg, wr_en, wr_file, done,
+             img_buffer_index, buffer_cntr, res_index, wr_adr);
 
-    input [31:0] pe_num;
-    input clk, rst, rst_acc, rst_res_reg, acc_en, wr_en, wr_file, res_buffer_en;
-    input [7:0] img_pixel, filter_value, res_index, wr_adr;
-    wire [7:0] mac_out;
-    wire [31:0] out;
-
-    reg [31:0] mem [0:MAX_MEM_SIZE-1];
-
-    mac mac1 (clk, rst, rst_acc, acc_en, img_pixel, filter_value, mac_out);
-
-    register4word res_buffer(clk, res_buffer_en, rst | rst_res_reg, res_index, mac_out, out);
-
-    always @(posedge clk) begin
-        if (wr_en) begin
-            mem[wr_adr] <= out;
-        end
-    end
-
-    always @(posedge clk) begin
-        if (wr_file)begin
-            string file_output;
-            file_output = $sformatf("./sim/file/my_output_%0d.dat", pe_num);
-            //file_output = $sformatf("file/my_output_%0d.dat", pe_num);
-            $writememh(file_output, mem);
-        end
-    end
-
-
-    
 endmodule

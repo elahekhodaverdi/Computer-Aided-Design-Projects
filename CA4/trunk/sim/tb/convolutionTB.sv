@@ -5,7 +5,8 @@ module convolutionTB();
     reg clk, start;
     reg [7:0] x, y, z;
     wire done;
-    convolution #(4) conv(clk, start, x, y, z, done);
+    //convolution #(4) conv(clk, start, x, y, z, done);
+    conv convv(clk, start, x, y, z, done);
 
     always #5 clk = ~clk;
 
