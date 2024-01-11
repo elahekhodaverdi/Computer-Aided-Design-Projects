@@ -1,11 +1,11 @@
 module  pe_dp(clk, rst, rst_acc, acc_en, res_buffer_en, rst_res_reg, wr_en, wr_file,
-                z, img_buffer_index, buffer_cntr, res_index, wr_adr, imgs, filters, pe_num, layer_num);
+                img_buffer_index, buffer_cntr, res_index, wr_adr, imgs, filters, pe_num, layer_num, mem);
                 
     parameter NUM_IMAGES = 1;
     parameter IMG_SIZE = 16;
     parameter MAX_MEM_SIZE = 128;
     input clk, rst, rst_acc, acc_en, res_buffer_en, rst_res_reg, wr_en, wr_file;
-    input [7:0] z, img_buffer_index, buffer_cntr, res_index, wr_adr;
+    input [7:0] img_buffer_index, buffer_cntr, res_index, wr_adr;
     input [7:0] imgs[0 : NUM_IMAGES - 1][0:IMG_SIZE * IMG_SIZE - 1];
     input [7:0] filters[0:NUM_IMAGES - 1][0:15];
     input [31:0] pe_num, layer_num;
@@ -15,7 +15,7 @@ module  pe_dp(clk, rst, rst_acc, acc_en, res_buffer_en, rst_res_reg, wr_en, wr_f
     wire [31:0] reg4_out;
     reg [7 : 0] macs_sum;
 
-    reg [31:0] mem [0:MAX_MEM_SIZE-1];
+    output reg [31:0] mem [0:MAX_MEM_SIZE-1];
 
     genvar i, j, k;
     generate

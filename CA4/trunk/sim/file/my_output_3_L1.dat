@@ -1,5 +1,5 @@
 // memory data file (do not edit the following line - required for mem load use)
-// instance=/convolutionTB/convv/dp/gen_pe[3]/pe/dp/mem
+// instance=/convolutionTB/convv/dp/gen_pe[3]/pe_l1/dp/mem
 // format=hex addressradix=h dataradix=h version=1.0 wordsperline=1 noaddress
 0c0a0b0d
 0e0f0e0d
