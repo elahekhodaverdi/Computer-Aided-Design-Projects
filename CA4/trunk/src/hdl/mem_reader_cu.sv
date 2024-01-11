@@ -29,7 +29,7 @@ module memory_reader_cu(clk, start, rst, adr_sel, filter_wr_en, img_wr_en,
             `INIT:   ns <= `LD_FILTER;
             `LD_FILTER:   ns <= ~(cntr4_filter == 8'd3) ? `LD_FILTER : `NEXT_FILTER;
             `NEXT_FILTER:   ns <= ~(cntr_filters == 8'd3) ? `LD_FILTER : `LD_IMG;
-            `LD_IMG:   ns <= ~(cntr_img * 4 >= IMG_SIZE * IMG_SIZE) ? `LD_IMG : `DONE;
+            `LD_IMG:   ns <= ~((cntr_img+1) * 4 >= IMG_SIZE * IMG_SIZE) ? `LD_IMG : `DONE;
             `DONE: ns <= `IDLE;
         endcase
     end

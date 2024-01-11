@@ -44,7 +44,7 @@ module pe_cu(clk, start, rst, rst_acc, acc_en,
             `LD_RESULT: begin
                      cntr_reg4 = cntr_reg4 + 1;
                      cntr_img_index = cntr_img_index + 1;
-                     if (IMG_SIZE - cntr_img_index == 4'd3) begin
+                     if (IMG_SIZE - cntr_img_index % IMG_SIZE == 4'd3) begin
                          cntr_img_index = cntr_img_index + 3;
                      end
             end
