@@ -55,7 +55,7 @@ module  pe_dp(clk, rst, rst_acc, acc_en, res_buffer_en, rst_res_reg, wr_en, wr_f
     always @(posedge clk) begin
         if (wr_file)begin
             string file_output;
-            file_output = $sformatf("./sim/file/my_output_%0d_L%0d.dat", pe_num, layer_num);
+            file_output = $sformatf("file/my_output_%0d_L%0d.dat", pe_num, layer_num);
             //file_output = $sformatf("file/my_output_%0d.dat", pe_num);
             $writememh(file_output, mem);
         end

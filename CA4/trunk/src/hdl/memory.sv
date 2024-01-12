@@ -14,7 +14,7 @@ module memory (clk, write_en, rd_adr, img_inp, rd_data);
 
     initial begin
         string file_name;
-        file_name = $sformatf("./sim/file/%s", FILE_INPUT);
+        file_name = $sformatf("file/%s", FILE_INPUT);
         $readmemh(file_name, mem);
     end
 
