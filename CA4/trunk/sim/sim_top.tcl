@@ -16,20 +16,24 @@
 	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/4_inc.sv
 	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/adder.sv
 	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/adder12.sv
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/buffer_4.sv
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/buffer_8.sv
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/controller.sv
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/convolution.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/buffer.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/conv_cu.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/conv_dp.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/conv.sv
 	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/counter.sv
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/datapath.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/decoder.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/mac.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/mem_reader_cu.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/mem_reader_dp.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/mem_reader.sv
 	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/memory.sv
 	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/multiplier.sv
 	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/mux2.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/pe_cu.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/pe_dp.sv
+	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/PE.sv
 	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/register1.sv
 	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/register4.sv
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/PE.sv
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/mac.sv
-	vlog 	+acc -incr -source  +define+SIM 	$hdl_path/decoder.sv
 	
 
 	
