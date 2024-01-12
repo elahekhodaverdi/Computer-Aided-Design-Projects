@@ -1,11 +1,12 @@
-module memory_reader_dp (clk, rst, adr_sel, filter_wr_en, img_wr_en, mem_offset_sel,
+module memory_reader_dp (clk, rst, adr_sel, filter_wr_en, img_wr_en, mem_offset_sel, img_inp, write_mem_en,
                 x, y, z, countr_filters, countr4_filter, countr_img, img_data, filters);
     
     parameter IMG_SIZE = 16;
     parameter FILE_INPUT = "input.txt";
-    input clk, rst, adr_sel, filter_wr_en, img_wr_en;
+    input clk, rst, adr_sel, filter_wr_en, img_wr_en, write_mem_en;
     input [7:0] x, y, z, countr_filters, countr4_filter, countr_img;
     input [1:0] mem_offset_sel;
+    input [31:0] img_inp [0:127];
 
     output [7:0] img_data [0:IMG_SIZE * IMG_SIZE - 1];
     output [7:0] filters [0:3][0:15];
@@ -14,8 +15,9 @@ module memory_reader_dp (clk, rst, adr_sel, filter_wr_en, img_wr_en, mem_offset_
     wire [7 : 0] mem_offset_out, mem_filter_adr, mem_rd_adr, mem_cntr_res;
     wire [3 : 0] filters_wr_en;
     wire [31 : 0] mem_rd_data;
+    wire [31 : 0] write_data;
 
-    memory #(128, FILE_INPUT) mem(clk, mem_rd_adr, mem_rd_data);
+    memory #(128, FILE_INPUT) mem(clk, write_mem_en, mem_rd_adr, img_inp, mem_rd_data);
     assign mem_offset_out = (mem_offset_sel == 0) ? y :
                             (mem_offset_sel == 1) ? x :
                             (mem_offset_sel == 2) ? z : 0;
