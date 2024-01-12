@@ -20,7 +20,7 @@ module conv_dp(clk, start_mem_l1, start_pe_l1, start_mem_l2, start_pe_l2, wrmem_
     wire [7:0] filters_l2_3 [0:3][0:15];
     wire [7:0] filters_l2_4 [0:3][0:15];
 
-    mem_reader #(16, 64, "datatest/input.txt") meml1(clk, start_mem_l1, 1'b0, 0, x, y, z, done_mem_l1, img_data_l1, filters_l1);
+    mem_reader #(16, 64, "datatest/input.txt") meml1(clk, start_mem_l1, 1'b0, pe_outs_l1[0], x, y, z, done_mem_l1, img_data_l1, filters_l1);
     genvar i;
     generate
         for (i = 0; i < 4; i = i + 1) begin : gen_pe
@@ -36,10 +36,10 @@ module conv_dp(clk, start_mem_l1, start_pe_l1, start_mem_l2, start_pe_l2, wrmem_
 
 
 
-    pe #(4, 13, 128) pe_l1(clk, start_pe_l2, {img_data_l2_1, img_data_l2_2, img_data_l2_3, img_data_l2_4}, filters_l2_1, 1, 2, dones_pe_l2[0], pe_outs_l2[0]);
-    pe #(4, 13, 128) pe_l1(clk, start_pe_l2, {img_data_l2_1, img_data_l2_2, img_data_l2_3, img_data_l2_4}, filters_l2_2, 2, 2, dones_pe_l2[1], pe_outs_l2[1]);
-    pe #(4, 13, 128) pe_l1(clk, start_pe_l2, {img_data_l2_1, img_data_l2_2, img_data_l2_3, img_data_l2_4}, filters_l2_3, 3, 2, dones_pe_l2[2], pe_outs_l2[2]);
-    pe #(4, 13, 128) pe_l1(clk, start_pe_l2, {img_data_l2_1, img_data_l2_2, img_data_l2_3, img_data_l2_4}, filters_l2_4, 4, 2, dones_pe_l2[3], pe_outs_l2[3]);
+    pe #(4, 13, 128) pe_l2_1(clk, start_pe_l2, {img_data_l2_1, img_data_l2_2, img_data_l2_3, img_data_l2_4}, filters_l2_1, 1, 2, dones_pe_l2[0], pe_outs_l2[0]);
+    pe #(4, 13, 128) pe_l2_2(clk, start_pe_l2, {img_data_l2_1, img_data_l2_2, img_data_l2_3, img_data_l2_4}, filters_l2_2, 2, 2, dones_pe_l2[1], pe_outs_l2[1]);
+    pe #(4, 13, 128) pe_l2_3(clk, start_pe_l2, {img_data_l2_1, img_data_l2_2, img_data_l2_3, img_data_l2_4}, filters_l2_3, 3, 2, dones_pe_l2[2], pe_outs_l2[2]);
+    pe #(4, 13, 128) pe_l2_4(clk, start_pe_l2, {img_data_l2_1, img_data_l2_2, img_data_l2_3, img_data_l2_4}, filters_l2_4, 4, 2, dones_pe_l2[3], pe_outs_l2[3]);
     assign done_pe_l2 = &dones_pe_l2;
     assign done_mem_l2 = &dones_mem_l2;
     

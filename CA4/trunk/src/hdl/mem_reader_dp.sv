@@ -2,6 +2,7 @@ module memory_reader_dp (clk, rst, adr_sel, filter_wr_en, img_wr_en, mem_offset_
                 x, y, z, countr_filters, countr4_filter, countr_img, img_data, filters);
     
     parameter IMG_SIZE = 16;
+    parameter IMG_LINE_SIZE = 64; 
     parameter FILE_INPUT = "input.txt";
     input clk, rst, adr_sel, filter_wr_en, img_wr_en, write_mem_en;
     input [7:0] x, y, z, countr_filters, countr4_filter, countr_img;
@@ -17,7 +18,7 @@ module memory_reader_dp (clk, rst, adr_sel, filter_wr_en, img_wr_en, mem_offset_
     wire [31 : 0] mem_rd_data;
     wire [31 : 0] write_data;
 
-    memory #(128, FILE_INPUT) mem(clk, write_mem_en, mem_rd_adr, img_inp, mem_rd_data);
+    memory #(128, IMG_LINE_SIZE, FILE_INPUT,16) mem(clk, write_mem_en, mem_rd_adr, img_inp, mem_rd_data);
     assign mem_offset_out = (mem_offset_sel == 0) ? y :
                             (mem_offset_sel == 1) ? x :
                             (mem_offset_sel == 2) ? z : 0;

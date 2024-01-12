@@ -15,7 +15,17 @@ module memory_reader_cu(clk, start, write_inp_en, rst, adr_sel, filter_wr_en, im
     output reg rst, adr_sel, filter_wr_en, img_wr_en, write_mem_en;
     output reg [7:0] countr_filters, countr4_filter, countr_img;
     output reg [1:0] mem_offset_sel;
-    output reg done = 0;
+    output reg done;
+
+    initial begin
+        rst = 0;
+        adr_sel = 0;
+        filter_wr_en = 0;
+        mem_offset_sel = 0;
+        img_wr_en = 0;
+        done = 0;
+        write_mem_en = 0;
+    end
 
     reg [7:0] cntr_img = 8'b0;
     reg [7:0] cntr4_filter = 8'b0;
@@ -24,9 +34,9 @@ module memory_reader_cu(clk, start, write_inp_en, rst, adr_sel, filter_wr_en, im
     reg[3:0] ns =`IDLE;
     reg[3:0] ps =`IDLE;
 
-    always @(start, cntr_img, cntr4_filter, ps, cntr_filters) begin 
+    always @(start, cntr_img, cntr4_filter, ps, cntr_filters, write_inp_en) begin 
         case(ps)
-            `IDLE:   ns <= (~start) ? `IDLE : (write_inp_en == 1'b1) ? `LD_INP : `INIT;
+            `IDLE:   ns <= (~start && ~write_inp_en) ? `IDLE : (write_inp_en) ? `LD_INP : `INIT;
             `INIT:   ns <= `LD_FILTER;
             `LD_FILTER:   ns <= ~(cntr4_filter == 8'd3) ? `LD_FILTER : `NEXT_FILTER;
             `NEXT_FILTER:   ns <= ~(cntr_filters == 8'd3) ? `LD_FILTER : `LD_IMG;
@@ -43,7 +53,7 @@ module memory_reader_cu(clk, start, write_inp_en, rst, adr_sel, filter_wr_en, im
             `LD_FILTER: begin  adr_sel = 1; filter_wr_en = 1; mem_offset_sel = 0; end
             `NEXT_FILTER: begin  cntr4_filter = 8'b0; end
             `LD_IMG : begin   img_wr_en = 1; mem_offset_sel = 1;  end
-            'LD_INP: begin   write_mem_en = 1; end
+            `LD_INP: begin   write_mem_en = 1; end
             `DONE: begin done = 1; end
         endcase
     end

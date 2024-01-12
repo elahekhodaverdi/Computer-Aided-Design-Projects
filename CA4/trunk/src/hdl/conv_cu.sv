@@ -11,7 +11,16 @@ module conv_cu(clk, start, done_mem_l1, done_pe_l1, done_mem_l2, done_pe_l2,
     input clk, start;
     input done_mem_l1, done_pe_l1, done_mem_l2, done_pe_l2;
     output reg wrmem_en_l2, start_mem_l1, start_pe_l1, start_mem_l2, start_pe_l2;
-    output reg done = 0;
+    output reg done ;
+
+    initial begin
+        wrmem_en_l2 = 0;
+        start_mem_l1 = 0;
+        start_pe_l1 = 0;
+        start_mem_l2 = 0;
+        start_pe_l2 = 0;
+        done = 0;
+    end
 
     reg[3:0] ns =`IDLE;
     reg[3:0] ps =`IDLE;

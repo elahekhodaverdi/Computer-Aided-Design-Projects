@@ -5,7 +5,7 @@ module memory (clk, write_en, rd_adr, img_inp, rd_data);
     parameter START_WR_IMG = 16;
     //parameter FILE_INPUT = "file/input.txt";
     
-    input clk;
+    input clk, write_en;
     input [7:0] rd_adr;
     input [31:0] img_inp [0:127];
     output [31:0] rd_data;
@@ -14,7 +14,7 @@ module memory (clk, write_en, rd_adr, img_inp, rd_data);
 
     initial begin
         string file_name;
-        file_name = $sformatf("./sim/file/%s", FILE_INPUT);
+        file_name = $sformatf("trunk/sim/file/%s", FILE_INPUT);
         $readmemh(file_name, mem);
     end
 
