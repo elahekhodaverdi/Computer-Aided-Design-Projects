@@ -11,8 +11,9 @@ module  pe_dp(clk, rst, rst_acc, acc_en, res_buffer_en, rst_res_reg, wr_en, wr_f
     input [31:0] pe_num, layer_num;
 
     wire [7:0] buffers_4_4 [0:NUM_IMAGES-1][0:15]; 
-    wire [7 : 0] mac_out [0:NUM_IMAGES-1];
+    wire [11 : 0] mac_out [0:NUM_IMAGES-1];
     wire [31:0] reg4_out;
+    reg [13 : 0] summ;
     reg [7 : 0] macs_sum;
 
     output reg [31:0] mem [0:MAX_MEM_SIZE-1];
@@ -36,10 +37,12 @@ module  pe_dp(clk, rst, rst_acc, acc_en, res_buffer_en, rst_res_reg, wr_en, wr_f
 
     register4word res_buffer(clk, res_buffer_en, rst | rst_res_reg, res_index, macs_sum, reg4_out);
 
+    assign macs_sum = summ[11:4];//(NUM_IMAGES == 1) ? summ[7:0] : summ[11:4];
+
     always @(*) begin
-        macs_sum = 0;
+        summ = 0;
         for (integer i = 0; i < NUM_IMAGES; i = i + 1)begin
-            macs_sum = macs_sum + mac_out[i];
+            summ = summ + {mac_out[i]};
         end
     end
 
