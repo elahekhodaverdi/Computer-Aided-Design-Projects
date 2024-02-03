@@ -22,10 +22,10 @@ module conv_dp(clk, start_mem_l1, start_pe_l1, start_mem_l2, start_pe_l2, wrmem_
 
     mem_reader #(16, 64, "datatest/input.txt") meml1(clk, start_mem_l1, 1'b0, pe_outs_l1[0], x, y, z, done_mem_l1, img_data_l1, filters_l1);
     
-    mem_reader #(13, 43, "datatest/filter1_L2.txt") meml2_1(clk, start_mem_l2, wrmem_en_l2, pe_outs_l1[0], z, y, z, dones_mem_l2[0], img_data_l2_1, filters_l2_1);
-    mem_reader #(13, 43, "datatest/filter2_L2.txt") meml2_2(clk, start_mem_l2, wrmem_en_l2, pe_outs_l1[1], z, y, z, dones_mem_l2[1], img_data_l2_2, filters_l2_2);
-    mem_reader #(13, 43, "datatest/filter3_L2.txt") meml2_3(clk, start_mem_l2, wrmem_en_l2, pe_outs_l1[2], z, y, z, dones_mem_l2[2], img_data_l2_3, filters_l2_3);
-    mem_reader #(13, 43, "datatest/filter4_L2.txt") meml2_4(clk, start_mem_l2, wrmem_en_l2, pe_outs_l1[3], z, y, z, dones_mem_l2[3], img_data_l2_4, filters_l2_4);
+    mem_reader #(13, 43, "datatest/filter1_L2.txt") meml2_1(clk, start_mem_l2, wrmem_en_l2, pe_outs_l1[0], 8'd16, 8'd0, 8'd16, dones_mem_l2[0], img_data_l2_1, filters_l2_1);
+    mem_reader #(13, 43, "datatest/filter2_L2.txt") meml2_2(clk, start_mem_l2, wrmem_en_l2, pe_outs_l1[1], 8'd16, 8'd0, 8'd16, dones_mem_l2[1], img_data_l2_2, filters_l2_2);
+    mem_reader #(13, 43, "datatest/filter3_L2.txt") meml2_3(clk, start_mem_l2, wrmem_en_l2, pe_outs_l1[2], 8'd16, 8'd0, 8'd16, dones_mem_l2[2], img_data_l2_3, filters_l2_3);
+    mem_reader #(13, 43, "datatest/filter4_L2.txt") meml2_4(clk, start_mem_l2, wrmem_en_l2, pe_outs_l1[3], 8'd16, 8'd0, 8'd16, dones_mem_l2[3], img_data_l2_4, filters_l2_4);
 
     genvar i;
     generate

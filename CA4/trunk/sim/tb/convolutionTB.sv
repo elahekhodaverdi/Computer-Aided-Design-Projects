@@ -12,9 +12,9 @@ module convolutionTB();
 
     initial begin
         {start,clk} = 3'b0;
-        x = 16;
-        y = 0;
-        z = 16;
+        x = 0;
+        y = 67;
+        z = 87;
 
         #30 start = 1'b1;
         #30 start = 1'b0;
